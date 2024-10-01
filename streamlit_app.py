@@ -1,6 +1,5 @@
 import streamlit as st
-import pyautogui
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageGrab
 import random
 import numpy as np
 import colorsys
@@ -100,6 +99,10 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
 
     return background_image
 
+# Function to take a screenshot using Pillow's ImageGrab
+def take_screenshot():
+    return ImageGeab.grab()
+
 # Streamlit app title
 st.title("Screenshot Capture App with Harmonious Artistic Background and Border")
 
@@ -109,7 +112,7 @@ color_scheme = st.selectbox("Select Color Scheme", options=['analogous', 'comple
 # Button to capture screenshot
 if st.button("Take Screenshot"):
     # Capture the screenshot
-    screenshot = pyautogui.screenshot()
+    screenshot = take_screenshot()
 
     # Add attractive background with color swirl and blur, based on the selected color scheme
     background_image = add_background_to_screenshot(screenshot, color_scheme=color_scheme)

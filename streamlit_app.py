@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFilter
+from pyvirtualdisplay import Display
 import mss
 import random
 import numpy as np
@@ -102,11 +103,17 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
 
 # Function to take a screenshot using MSS Library
 def take_screenshot():
-    with mss.mss() as sct: 
-        monitor = sct.monitors[1] 
-        screenshot = sct.grab(monitor) 
-        img = Image.frombytes("RGB", (screenshot.width, screenshot.height), screenshot.rgb)
-        return img 
+    display = Display(visible=0, size=(1024,768))
+    display.start() 
+    
+    try: 
+        with mss.mss() as sct: 
+            monitor = sct.monitors[1] 
+            screenshot = sct.grab(monitor) 
+            img = Image.frombytes("RGB", (screenshot.width, screenshot.height), screenshot.rgb)
+            return img 
+    finally:
+        display.stop() 
 
 # Streamlit app title
 st.title("Screenshot Capture App with Harmonious Artistic Background and Border")

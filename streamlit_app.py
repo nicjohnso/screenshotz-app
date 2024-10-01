@@ -1,10 +1,11 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFilter
 from pyvirtualdisplay import Display
-import mss
+import io
 import random
 import numpy as np
 import colorsys
+from streamlit_paste_button import st_paste_button
 
 # Function to generate analogous or complementary colors based on a base color
 def generate_harmonious_colors(scheme='analogous', num_colors=5):
@@ -101,30 +102,18 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
 
     return background_image
 
-# Function to take a screenshot using MSS Library
-def take_screenshot():
-    display = Display(visible=0, size=(1024,768))
-    display.start() 
-    
-    try: 
-        with mss.mss() as sct: 
-            monitor = sct.monitors[1] 
-            screenshot = sct.grab(monitor) 
-            img = Image.frombytes("RGB", (screenshot.width, screenshot.height), screenshot.rgb)
-            return img 
-    finally:
-        display.stop() 
-
 # Streamlit app title
-st.title("Screenshot Capture App with Harmonious Artistic Background and Border")
+st.title("Screenshotz")
 
 # Let user choose the color scheme
 color_scheme = st.selectbox("Select Color Scheme", options=['analogous', 'complementary'])
 
+pasted_image = st_paste_button(label="Paste Image") 
+
 # Button to capture screenshot
-if st.button("Take Screenshot"):
-    # Capture the screenshot
-    screenshot = take_screenshot()
+if pasted_image is not None: 
+
+    image = Image.open(io.BytesIO(pasted_image))
 
     # Add attractive background with color swirl and blur, based on the selected color scheme
     background_image = add_background_to_screenshot(screenshot, color_scheme=color_scheme)

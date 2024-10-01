@@ -4,7 +4,7 @@ import io
 import random
 import numpy as np
 import colorsys
-from streamlit_paste_button import st_paste_button
+from streamlit_paste_button import paste_image_button
 
 # Function to generate analogous or complementary colors based on a base color
 def generate_harmonious_colors(scheme='analogous', num_colors=5):
@@ -107,7 +107,7 @@ st.title("Screenshotz")
 # Let user choose the color scheme
 color_scheme = st.selectbox("Select Color Scheme", options=['analogous', 'complementary'])
 
-pasted_image = st_paste_button(label="Paste Image") 
+pasted_image = paste_image_button(label="Paste Image") 
 
 # Button to capture screenshot
 if pasted_image is not None: 

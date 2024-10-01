@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFilter
-from pyvirtualdisplay import Display
 import io
 import random
 import numpy as np

@@ -1,2 +1,2 @@
 streamlit
-py -m pip install pyautogui
+pyautogui

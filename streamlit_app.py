@@ -112,7 +112,7 @@ pasted_image = paste_image_button(label="Paste Image")
 # Button to capture screenshot
 if pasted_image is not None: 
 
-    image = Image.open(io.BytesIO(pasted_image))
+    image = pasted_image.image_data
 
     # Add attractive background with color swirl and blur, based on the selected color scheme
     background_image = add_background_to_screenshot(screenshot, color_scheme=color_scheme)

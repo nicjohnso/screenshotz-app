@@ -7,7 +7,7 @@ import colorsys
 from streamlit_paste_button import paste_image_button
 
 # Function to generate analogous or complementary colors based on a base color
-def generate_harmonious_colors(scheme='analogous', num_colors=5):
+def generate_harmonious_colors(scheme, num_colors=5):
     # Randomly select a base hue (value between 0 and 1)
     base_hue = random.random()
     colors = []
@@ -30,7 +30,7 @@ def generate_harmonious_colors(scheme='analogous', num_colors=5):
     return colors
 
 # Function to create a background with mixed colors in a swirl pattern
-def create_attractive_background(width, height, color_scheme='analogous', num_colors=5, blur_radius=20):
+def create_attractive_background(width, height, color_scheme, num_colors=5, blur_radius=20):
     # Generate harmonious colors (either analogous or complementary)
     colors = generate_harmonious_colors(scheme=color_scheme, num_colors=num_colors)
 

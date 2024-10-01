@@ -1,5 +1,6 @@
 import streamlit as st
-from PIL import Image, ImageDraw, ImageFilter, ImageGrab
+from PIL import Image, ImageDraw, ImageFilter
+import mss
 import random
 import numpy as np
 import colorsys
@@ -99,9 +100,13 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
 
     return background_image
 
-# Function to take a screenshot using Pillow's ImageGrab
+# Function to take a screenshot using MSS Library
 def take_screenshot():
-    return ImageGeab.grab()
+    with mss.mss() as sct: 
+        monitor = sct.monitors[1] 
+        screenshot = sct.grab(monitor) 
+        img = Image.frombytes("RGB", (screenshot.width, screenshot.height), screenshot.rgb)
+        return img 
 
 # Streamlit app title
 st.title("Screenshot Capture App with Harmonious Artistic Background and Border")

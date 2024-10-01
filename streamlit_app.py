@@ -103,7 +103,7 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
     return background_image
 
 # Streamlit app title
-st.title("Screenshotz")
+st.title("Screenshotz") 
 
 # Let user choose the color scheme
 color_scheme = st.selectbox("Select Color Scheme", options=['analogous', 'complementary'])

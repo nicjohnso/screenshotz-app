@@ -90,7 +90,7 @@ def add_background_to_screenshot(screenshot, color_scheme='analogous'):
     screenshot_with_border = add_border_to_screenshot(screenshot)
 
     # Create an attractive background image based on the screenshot size
-    background_image = create_attractive_background(screenshot_with_border.width, screenshot_with_border.height, color_scheme=color_scheme)
+    background_image = create_attractive_background(screenshot_with_border.width * 1.2, screenshot_with_border.height * 1.2, color_scheme=color_scheme)
 
     # Calculate position to center the screenshot on the background
     x_offset = (background_image.width - screenshot_with_border.width) // 2
